@@ -15,6 +15,12 @@ orders as (
 
 ),
 
+order_payment as (
+
+    select * from {{ ref('orders_payments')}}
+
+),
+
 customer_orders as (
 
     select
