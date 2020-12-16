@@ -32,6 +32,7 @@ customer_orders as (
         sum(amount) as lifetime_value
 
     from orders
+    left join order_payment using (customer_id)
 
     group by 1
 
