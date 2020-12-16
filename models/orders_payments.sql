@@ -1,10 +1,10 @@
 with orders as (
-    select * from {{ref('stg_orders')}}
-)
+    select * from {{ ref('stg_orders') }}
+),
 
 with payments as (
-    select * from {{ref('stg_payments')}}
-)
+    select * from {{ ref('stg_payments') }}
+),
 
 order_payments as (
     select
@@ -12,7 +12,7 @@ order_payments as (
         sum(case when status = 'success' then amount end)
     from payments
     group by 1
-)
+),
 
 final as (
     select
