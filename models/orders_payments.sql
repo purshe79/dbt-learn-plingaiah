@@ -2,14 +2,14 @@ with orders as (
     select * from {{ ref('stg_orders') }}
 ),
 
-with payments as (
+payments as (
     select * from {{ ref('stg_payments') }}
 ),
 
 order_payments as (
     select
         order_id,
-        sum(case when status = 'success' then amount end)
+        sum(case when status = 'success' then amount end) as amount
     from payments
     group by 1
 ),
