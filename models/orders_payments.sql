@@ -2,7 +2,7 @@ with orders as (
     select * from {{ref('stg_orders')}}
 )
 
-with payments as ()
+with payments as (
     select * from {{ref('stg_payments')}}
 )
 
