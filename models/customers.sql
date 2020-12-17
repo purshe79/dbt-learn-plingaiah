@@ -1,8 +1,4 @@
-{{
-  config(
-    materialized='view'
-  )
-}}
+
 
 with customers as (
 
@@ -15,7 +11,7 @@ orders as (
 
 ),
 
-order_payment as (
+orders_payments as (
 
     select * from {{ ref('orders_payments')}}
 
@@ -31,8 +27,7 @@ customer_orders as (
         count(order_id) as number_of_orders,
         sum(amount) as lifetime_value
 
-    from orders
-    left join order_payment using (customer_id)
+    from orders left join orders_payments on (orders.customer_id=orders_payments.customer_id)
 
     group by 1
 
